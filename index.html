@@ -4,137 +4,181 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HumanitAI — AI Safety Education for Everyone</title>
-<meta name="description" content="HumanitAI CIC: AI safety education for communities, schools, and organisations. Company 16891121.">
-<meta name="theme-color" content="#0f172a">
+<meta name="description" content="HumanitAI CIC: AI safety education for communities, schools, and organisations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0a0a0a">
 <style>
 :root {
-  --bg: #f8fafc;
-  --bg-dark: #0f172a;
+  --bg: #fafafa;
+  --bg-warm: #f5f0eb;
+  --bg-dark: #0a0a0a;
   --bg-card: #ffffff;
-  --text: #1e293b;
-  --text-muted: #64748b;
-  --accent: #10b981;
-  --accent-dark: #059669;
-  --accent-light: #d1fae5;
-  --border: #e2e8f0;
-  --shadow: 0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -2px rgba(0,0,0,.05);
-  --shadow-lg: 0 10px 25px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.05);
-  --radius: 12px;
+  --text: #1a1a1a;
+  --text-secondary: #525252;
+  --text-muted: #737373;
+  --accent: #0d9488;
+  --accent-light: #ccfbf1;
+  --accent-dark: #0f766e;
+  --border: #e5e5e5;
+  --border-light: #f0f0f0;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+  --shadow: 0 4px 12px rgba(0,0,0,.06);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,.08);
+  --radius: 8px;
   --radius-lg: 16px;
-  --max-w: 1200px;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --max-w: 1280px;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--font-sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-img{max-width:100%;height:auto}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;font-feature-settings:'cv02','cv03','cv04','cv11'}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* Utility */
+.container{max-width:var(--max-w);margin:0 auto;padding:0 32px}
+@media(max-width:768px){.container{padding:0 20px}}
 
 /* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
-nav .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
-nav .logo{font-size:20px;font-weight:700;color:#fff;letter-spacing:-.5px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-light);transition:all .3s}
+nav.scrolled{box-shadow:var(--shadow-sm)}
+nav .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-family:var(--font-serif);font-size:22px;font-weight:700;letter-spacing:-.3px}
 nav .logo span{color:var(--accent)}
-nav .nav-links{display:flex;gap:24px;align-items:center}
-nav .nav-links a{color:#cbd5e1;font-size:14px;font-weight:500;transition:color .2s}
-nav .nav-links a:hover{color:#fff;text-decoration:none}
-nav .nav-cta{background:var(--accent);color:#000;padding:8px 20px;border-radius:8px;font-weight:600;font-size:14px;transition:background .2s}
-nav .nav-cta:hover{background:var(--accent-dark);color:#fff;text-decoration:none}
-@media(max-width:768px){nav .nav-links{display:none}}
+nav .nav-links{display:flex;gap:32px;align-items:center}
+nav .nav-links a{font-size:14px;font-weight:500;color:var(--text-secondary);transition:color .2s;letter-spacing:.2px}
+nav .nav-links a:hover{color:var(--text)}
+nav .nav-cta{background:var(--bg-dark);color:#fff;padding:10px 24px;border-radius:6px;font-weight:600;font-size:13px;letter-spacing:.5px;text-transform:uppercase;transition:all .2s}
+nav .nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
+@media(max-width:768px){nav .nav-links a:not(.nav-cta){display:none}nav .nav-inner{padding:0 20px}}
 
 /* Hero */
-.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);color:#fff;padding:140px 24px 80px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(16,185,129,.15) 0%,transparent 60%);pointer-events:none}
-.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;margin-bottom:16px;letter-spacing:-1.5px;line-height:1.1}
-.hero h1 span{color:var(--accent)}
-.hero p{font-size:clamp(16px,2.5vw,20px);color:#94a3b8;max-width:640px;margin:0 auto 36px;line-height:1.7}
-.hero .cta-group{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.hero .cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;padding:14px 32px;font-size:16px;font-weight:600;border-radius:10px;text-decoration:none;transition:all .2s;box-shadow:0 4px 14px rgba(16,185,129,.3)}
-.hero .cta:hover{background:var(--accent-dark);color:#fff;transform:translateY(-2px);box-shadow:0 6px 20px rgba(16,185,129,.4);text-decoration:none}
-.hero .cta-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);padding:14px 32px;font-size:16px;font-weight:600;border-radius:10px;text-decoration:none;transition:all .2s}
-.hero .cta-secondary:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);text-decoration:none}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-dark);color:#fff}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(13,148,136,.15) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 60%,rgba(13,148,136,.08) 0%,transparent 60%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
+.hero-content{position:relative;z-index:2;max-width:var(--max-w);margin:0 auto;padding:120px 32px 80px;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:32px;padding:8px 16px;border:1px solid rgba(13,148,136,.3);border-radius:4px;background:rgba(13,148,136,.08)}
+.hero h1{font-family:var(--font-serif);font-size:clamp(48px,7vw,88px);font-weight:700;line-height:1.05;letter-spacing:-2px;margin-bottom:24px;max-width:900px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:clamp(17px,2vw,21px);color:#a3a3a3;max-width:600px;line-height:1.7;margin-bottom:48px;font-weight:300}
+.hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;padding:16px 36px;font-size:14px;font-weight:600;border-radius:6px;letter-spacing:.5px;text-transform:uppercase;transition:all .3s;box-shadow:0 4px 20px rgba(13,148,136,.25)}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(13,148,136,.35);text-decoration:none}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;color:#fff;padding:16px 36px;font-size:14px;font-weight:500;border:1px solid rgba(255,255,255,.15);border-radius:6px;transition:all .3s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05);text-decoration:none}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:#525252;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.hero-scroll .line{width:1px;height:40px;background:linear-gradient(to bottom,#525252,transparent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 
-/* Sections */
-.section{padding:80px 24px}
-.section-alt{background:#fff}
-.section-dark{background:var(--bg-dark);color:#fff}
-.container{max-width:var(--max-w);margin:0 auto}
-.section-header{text-align:center;margin-bottom:48px}
-.section-header h2{font-size:clamp(28px,4vw,40px);font-weight:700;margin-bottom:12px;letter-spacing:-.5px}
-.section-header h2 span{color:var(--accent)}
-.section-header p{color:var(--text-muted);font-size:18px;max-width:600px;margin:0 auto}
-.section-dark .section-header p{color:#94a3b8}
+/* Stats bar */
+.stats-bar{background:var(--bg-dark);border-top:1px solid rgba(255,255,255,.06);padding:48px 0}
+.stats-bar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat-item{text-align:center;padding:0 24px;border-right:1px solid rgba(255,255,255,.06)}
+.stat-item:last-child{border-right:none}
+.stat-item .number{font-size:clamp(24px,3vw,36px);font-weight:800;color:#fff;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.stat-item .label{font-size:12px;color:#737373;margin-top:6px;letter-spacing:1px;text-transform:uppercase;font-weight:500}
+@media(max-width:640px){.stats-bar .container{grid-template-columns:repeat(2,1fr);gap:24px}.stat-item{border-right:none;padding:12px}}
 
-/* Stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:0}
-.stat{text-align:center;padding:28px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);transition:transform .2s,box-shadow .2s}
-.stat:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.stat .number{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--accent);letter-spacing:-.5px}
-.stat .label{color:var(--text-muted);font-size:13px;margin-top:6px;font-weight:500}
-@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+/* Section base */
+section{padding:120px 0}
+.section-header{margin-bottom:64px}
+.section-header .eyebrow{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.section-header h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:700;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+.section-header h2 em{font-style:italic;color:var(--accent)}
+.section-header p{font-size:18px;color:var(--text-secondary);max-width:640px;line-height:1.7;font-weight:300}
+.section-header.center{text-align:center}
+.section-header.center p{margin:0 auto}
 
-/* Cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;transition:all .25s ease}
-.card:hover{border-color:var(--accent);box-shadow:var(--shadow-lg);transform:translateY(-3px)}
-.card-icon{font-size:32px;margin-bottom:16px}
-.card h3{font-size:18px;font-weight:600;margin-bottom:10px;color:var(--text)}
-.card p{color:var(--text-muted);font-size:15px;line-height:1.65}
+/* About / Mission */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-text h3{font-family:var(--font-serif);font-size:32px;font-weight:700;margin-bottom:20px;letter-spacing:-.5px}
+.about-text p{color:var(--text-secondary);font-size:17px;line-height:1.8;margin-bottom:20px;font-weight:300}
+.about-text .highlight{color:var(--accent);font-weight:500}
+.about-visual{background:var(--bg-warm);border-radius:var(--radius-lg);padding:48px;position:relative;overflow:hidden;min-height:400px;display:flex;align-items:center;justify-content:center}
+.about-visual::before{content:'AI';font-family:var(--font-serif);font-size:200px;font-weight:700;color:rgba(13,148,136,.06);position:absolute;right:-20px;bottom:-40px;line-height:1}
+.about-visual .quote{font-family:var(--font-serif);font-size:24px;font-style:italic;color:var(--text);line-height:1.5;max-width:320px;position:relative;z-index:2}
+.about-visual .quote::before{content:'\201C';font-size:64px;color:var(--accent);position:absolute;top:-30px;left:-10px;opacity:.3;font-family:var(--font-serif)}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:48px}.about-visual{min-height:280px}.about-visual::before{font-size:140px}}
 
-/* Mission */
-.mission{max-width:720px;margin:0 auto;text-align:center}
-.mission p{font-size:clamp(17px,2.5vw,20px);color:var(--text-muted);line-height:1.8}
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.service-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;transition:all .3s ease;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{border-color:var(--accent);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.service-card .icon{width:48px;height:48px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:24px}
+.service-card h3{font-size:20px;font-weight:600;margin-bottom:12px;letter-spacing:-.3px}
+.service-card p{color:var(--text-secondary);font-size:15px;line-height:1.7;font-weight:300}
+@media(max-width:768px){.services-grid{grid-template-columns:1fr}}
 
-/* Audience tags */
-.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:800px;margin:0 auto}
-.tag{background:var(--accent-light);border:1px solid rgba(16,185,129,.3);color:var(--accent-dark);padding:8px 18px;border-radius:24px;font-size:14px;font-weight:500;transition:all .2s}
-.tag:hover{background:var(--accent);color:#fff;transform:scale(1.05)}
+/* Audience */
+.audience-section{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden}
+.audience-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 30% 50%,rgba(13,148,136,.1) 0%,transparent 60%)}
+.audience-inner{position:relative;z-index:2}
+.audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.audience-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;text-align:center;transition:all .3s}
+.audience-item:hover{background:rgba(13,148,136,.1);border-color:rgba(13,148,136,.3);transform:translateY(-2px)}
+.audience-item .icon{font-size:28px;margin-bottom:12px}
+.audience-item span{font-size:14px;font-weight:500;color:#d4d4d4}
+@media(max-width:768px){.audience-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.audience-grid{grid-template-columns:1fr}}
 
-/* Get involved */
-.involve-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;text-align:center;transition:all .25s}
-.involve-card:hover{border-color:var(--accent);box-shadow:var(--shadow-lg)}
-.involve-card .icon{font-size:40px;margin-bottom:16px}
-.involve-card h3{font-size:20px;font-weight:600;margin-bottom:10px}
-.involve-card p{color:var(--text-muted);font-size:15px;margin-bottom:20px;line-height:1.6}
-.involve-card .btn{display:inline-block;background:var(--accent);color:#000;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;transition:all .2s}
-.involve-card .btn:hover{background:var(--accent-dark);color:#fff;text-decoration:none;transform:translateY(-1px)}
+/* Involved */
+.involved-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.involved-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;transition:all .3s}
+.involved-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.involved-card .num{font-family:var(--font-serif);font-size:48px;font-weight:700;color:var(--border);margin-bottom:16px;line-height:1}
+.involved-card h3{font-size:20px;font-weight:600;margin-bottom:12px}
+.involved-card p{color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:24px;font-weight:300}
+.involved-card .link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--accent);transition:gap .2s}
+.involved-card .link:hover{gap:10px;text-decoration:none}
+@media(max-width:768px){.involved-grid{grid-template-columns:1fr}}
+
+/* Contact */
+.contact-section{background:var(--bg-warm);position:relative;overflow:hidden}
+.contact-section::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(13,148,136,.08) 0%,transparent 70%);pointer-events:none}
+.contact-inner{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:2}
+.contact-inner h2{font-family:var(--font-serif);font-size:clamp(36px,5vw,48px);font-weight:700;margin-bottom:16px}
+.contact-inner p{color:var(--text-secondary);font-size:18px;margin-bottom:40px;font-weight:300}
+.contact-email{display:inline-flex;align-items:center;gap:12px;background:var(--bg-dark);color:#fff;padding:18px 40px;border-radius:8px;font-size:16px;font-weight:600;transition:all .3s;box-shadow:var(--shadow-lg)}
+.contact-email:hover{background:var(--accent);transform:translateY(-2px);text-decoration:none}
+.contact-email svg{width:20px;height:20px}
 
 /* Footer */
-footer{background:var(--bg-dark);color:#94a3b8;padding:48px 24px;text-align:center;font-size:14px}
-footer .footer-logo{font-size:24px;font-weight:700;color:#fff;margin-bottom:8px}
-footer .footer-logo span{color:var(--accent)}
-footer p{margin:4px 0}
-footer a{color:var(--accent)}
-footer .footer-links{display:flex;justify-content:center;gap:24px;margin:16px 0;flex-wrap:wrap}
-footer .footer-links a{color:#94a3b8;font-size:13px}
-footer .footer-links a:hover{color:#fff}
+footer{background:var(--bg-dark);color:#737373;padding:64px 0 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .logo{font-family:var(--font-serif);font-size:24px;font-weight:700;color:#fff;margin-bottom:12px}
+.footer-brand .logo span{color:var(--accent)}
+.footer-brand p{font-size:14px;line-height:1.7;max-width:320px;font-weight:300}
+.footer-col h4{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#a3a3a3;margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:#737373;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:#fff;text-decoration:none}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;flex-wrap:wrap;gap:12px}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;text-align:center}}
 
-/* Mobile */
-@media(max-width:768px){
-  .section{padding:56px 20px}
-  .hero{padding:120px 20px 60px}
-  .hero .cta-group{flex-direction:column;align-items:center}
-  .hero .cta,.hero .cta-secondary{width:100%;max-width:280px;justify-content:center}
-  .grid{grid-template-columns:1fr}
-  nav .nav-inner{padding:0 16px}
-}
-@media(max-width:480px){
-  .stats{grid-template-columns:1fr 1fr;gap:12px}
-  .stat{padding:20px 12px}
-  .tag{font-size:13px;padding:6px 14px}
-}
+/* Animations */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:.1s}
+.stagger-2{transition-delay:.2s}
+.stagger-3{transition-delay:.3s}
+.stagger-4{transition-delay:.4s}
 </style>
 </head>
 <body>
 
-<nav>
+<nav id="nav">
   <div class="nav-inner">
     <div class="logo">Humanit<span>AI</span></div>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#audience">Who We Serve</a>
       <a href="#involved">Get Involved</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </div>
@@ -142,49 +186,76 @@ footer .footer-links a:hover{color:#fff}
 </nav>
 
 <section class="hero">
-  <h1>Humanit<span>AI</span></h1>
-  <p>AI safety education for communities, schools, and organisations. Because understanding AI is not optional — it's essential.</p>
-  <div class="cta-group">
-    <a href="#involved" class="cta">Get Involved</a>
-    <a href="#about" class="cta-secondary">Learn More</a>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">AI Safety Education</div>
+    <h1>Understanding AI<br>is not <em>optional.</em><br>It's essential.</h1>
+    <p class="hero-sub">HumanitAI is a Community Interest Company dedicated to making AI safety education accessible to everyone — communities, schools, and organisations across the UK.</p>
+    <div class="hero-actions">
+      <a href="#involved" class="btn-primary">Get Involved <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#about" class="btn-ghost">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="line"></div>
   </div>
 </section>
 
-<section class="section section-alt" id="about">
+<div class="stats-bar">
   <div class="container">
-    <div class="stats">
-      <div class="stat"><div class="number">16891121</div><div class="label">Companies House No.</div></div>
-      <div class="stat"><div class="number">CIC</div><div class="label">Community Interest Company</div></div>
-      <div class="stat"><div class="number">UK</div><div class="label">Registered in England & Wales</div></div>
-      <div class="stat"><div class="number">2026</div><div class="label">Founded</div></div>
-    </div>
+    <div class="stat-item"><div class="number">16891121</div><div class="label">Company No.</div></div>
+    <div class="stat-item"><div class="number">CIC</div><div class="label">Community Interest</div></div>
+    <div class="stat-item"><div class="number">UK</div><div class="label">Registered England & Wales</div></div>
+    <div class="stat-item"><div class="number">2026</div><div class="label">Founded</div></div>
   </div>
-</section>
+</div>
 
-<section class="section" id="services">
+<section id="about">
   <div class="container">
-    <div class="section-header">
-      <h2>What We <span>Do</span></h2>
-      <p>Practical AI safety education that makes complex technology understandable for everyone.</p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="card-icon">🎓</div>
-        <h3>AI Safety Education</h3>
-        <p>Workshops, courses, and resources that teach people how AI works, where it fails, and how to use it safely. No jargon. No hype. Real understanding.</p>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <div class="section-header" style="margin-bottom:24px">
+          <div class="eyebrow">About Us</div>
+          <h2>AI is moving faster<br>than people can <em>follow.</em></h2>
+        </div>
+        <p>The gap between those who understand AI and those who don't is growing every day. <span class="highlight">HumanitAI exists to close that gap</span> — through education, not fear.</p>
+        <p>We believe everyone deserves to understand the technology shaping their lives. Not just engineers. Not just tech companies. <span class="highlight">Everyone.</span></p>
+        <p>As a Community Interest Company, all profits are reinvested into free and subsidised AI safety programmes for underserved communities across the UK.</p>
       </div>
-      <div class="card">
-        <div class="card-icon">🛡️</div>
+      <div class="about-visual fade-up stagger-1">
+        <div class="quote">AI safety is not a technical problem. It's a human one.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section-alt" style="background:#fff">
+  <div class="container">
+    <div class="section-header center">
+      <div class="eyebrow">What We Do</div>
+      <h2>Practical AI safety<br>education for <em>everyone.</em></h2>
+      <p>No jargon. No hype. Real understanding of how AI works, where it fails, and how to use it safely.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="icon">🎓</div>
+        <h3>AI Safety Education</h3>
+        <p>Workshops, courses, and resources that teach people how AI works, where it fails, and how to use it safely. Designed for all ages and backgrounds.</p>
+      </div>
+      <div class="service-card fade-up stagger-1">
+        <div class="icon">🛡️</div>
         <h3>Risk Awareness</h3>
         <p>Helping individuals and organisations identify AI risks before they become problems. Data privacy, bias, hallucination, and misuse — explained clearly.</p>
       </div>
-      <div class="card">
-        <div class="card-icon">🤝</div>
+      <div class="service-card fade-up stagger-2">
+        <div class="icon">🤝</div>
         <h3>Community Programmes</h3>
         <p>Free and subsidised AI literacy programmes for underserved communities, schools, and grassroots organisations across the UK.</p>
       </div>
-      <div class="card">
-        <div class="card-icon">📊</div>
+      <div class="service-card fade-up stagger-3">
+        <div class="icon">📊</div>
         <h3>Research & Advocacy</h3>
         <p>Evidence-based research on AI's impact on society. Policy recommendations. Public awareness campaigns. Making AI safety a public conversation.</p>
       </div>
@@ -192,89 +263,111 @@ footer .footer-links a:hover{color:#fff}
   </div>
 </section>
 
-<section class="section section-alt">
-  <div class="container">
-    <div class="mission">
-      <div class="section-header">
-        <h2>Why <span>HumanitAI</span></h2>
-      </div>
-      <p>AI is moving faster than most people can follow. The gap between those who understand it and those who don't is growing. HumanitAI exists to close that gap — through education, not fear. We believe everyone deserves to understand the technology shaping their lives.</p>
+<section id="audience" class="audience-section">
+  <div class="container audience-inner">
+    <div class="section-header center" style="margin-bottom:0">
+      <div class="eyebrow" style="color:var(--accent)">Who We Serve</div>
+      <h2 style="color:#fff">AI safety is not<br>just for <em style="color:var(--accent)">engineers.</em></h2>
+      <p style="color:#a3a3a3">It's for everyone who uses, is affected by, or makes decisions about AI.</p>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-item"><div class="icon">🏫</div><span>Schools & Students</span></div>
+      <div class="audience-item"><div class="icon">🏘️</div><span>Community Groups</span></div>
+      <div class="audience-item"><div class="icon">💼</div><span>Small Businesses</span></div>
+      <div class="audience-item"><div class="icon">❤️</div><span>Charities & NGOs</span></div>
+      <div class="audience-item"><div class="icon">👨‍👩‍👧</div><span>Parents & Carers</span></div>
+      <div class="audience-item"><div class="icon">🧓</div><span>Older Adults</span></div>
+      <div class="audience-item"><div class="icon">🏛️</div><span>Public Sector</span></div>
+      <div class="audience-item"><div class="icon">🎯</div><span>Youth Workers</span></div>
     </div>
   </div>
 </section>
 
-<section class="section section-dark">
+<section id="involved">
   <div class="container">
-    <div class="section-header">
-      <h2>Who We <span>Serve</span></h2>
-      <p>AI safety is not just for engineers. It's for everyone.</p>
+    <div class="section-header center">
+      <div class="eyebrow">Get Involved</div>
+      <h2>Join us in making<br>AI safety <em>accessible.</em></h2>
+      <p>Whether you want to partner, volunteer, or support our mission.</p>
     </div>
-    <div class="tags">
-      <span class="tag">Schools & Students</span>
-      <span class="tag">Community Groups</span>
-      <span class="tag">Small Businesses</span>
-      <span class="tag">Charities & NGOs</span>
-      <span class="tag">Parents & Carers</span>
-      <span class="tag">Older Adults</span>
-      <span class="tag">Public Sector</span>
-      <span class="tag">Youth Workers</span>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="involved">
-  <div class="container">
-    <div class="section-header">
-      <h2>Get <span>Involved</span></h2>
-      <p>Join us in making AI safety accessible to everyone.</p>
-    </div>
-    <div class="grid">
-      <div class="involve-card">
-        <div class="icon">📩</div>
+    <div class="involved-grid">
+      <div class="involved-card fade-up">
+        <div class="num">01</div>
         <h3>Partner With Us</h3>
         <p>Run AI safety workshops in your school, charity, or organisation. We provide trainers, materials, and ongoing support.</p>
-        <a href="#contact" class="btn">Learn More</a>
+        <a href="#contact" class="link">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="involve-card">
-        <div class="icon">🤝</div>
+      <div class="involved-card fade-up stagger-1">
+        <div class="num">02</div>
         <h3>Volunteer</h3>
         <p>Join our network of AI safety educators. No technical background required — just a willingness to learn and teach.</p>
-        <a href="#contact" class="btn">Join Us</a>
+        <a href="#contact" class="link">Join Us <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="involve-card">
-        <div class="icon">💰</div>
+      <div class="involved-card fade-up stagger-2">
+        <div class="num">03</div>
         <h3>Support Us</h3>
         <p>As a CIC, all profits are reinvested into our community programmes. Donations and grants fund free education.</p>
-        <a href="#contact" class="btn">Donate</a>
+        <a href="#contact" class="link">Donate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt" id="contact">
+<section id="contact" class="contact-section">
   <div class="container">
-    <div class="section-header">
-      <h2>Get In <span>Touch</span></h2>
-      <p>Ready to bring AI safety education to your community?</p>
-    </div>
-    <div style="text-align:center;max-width:500px;margin:0 auto">
-      <p style="font-size:18px;color:var(--text-muted);margin-bottom:24px">Email us at <a href="mailto:hello@humanitai.org" style="font-weight:600">hello@humanitai.org</a></p>
-      <a href="mailto:hello@humanitai.org" class="hero .cta" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;padding:14px 32px;font-size:16px;font-weight:600;border-radius:10px;text-decoration:none;box-shadow:0 4px 14px rgba(16,185,129,.3)">Send Email</a>
+    <div class="contact-inner">
+      <div class="section-header center" style="margin-bottom:24px">
+        <div class="eyebrow">Contact</div>
+        <h2>Let's make AI<br>safety <em>accessible.</em></h2>
+        <p>Ready to bring AI safety education to your community? Get in touch.</p>
+      </div>
+      <a href="mailto:hello@humanitai.org" class="contact-email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        hello@humanitai.org
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Humanit<span>AI</span></div>
-  <p>HumanitAI CIC — Company No. 16891121 — Registered in England & Wales</p>
-  <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#involved">Get Involved</a>
-    <a href="mailto:hello@humanitai.org">Contact</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Humanit<span>AI</span></div>
+        <p>AI safety education for communities, schools, and organisations. Because understanding AI is not optional — it's essential.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#audience">Who We Serve</a>
+        <a href="#involved">Get Involved</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="mailto:hello@humanitai.org">Email Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HumanitAI CIC. Company No. 16891121. Registered in England & Wales.</span>
+      <span>All profits reinvested into community programmes.</span>
+    </div>
   </div>
-  <p style="margin-top:16px;font-size:12px;color:#64748b">© 2026 HumanitAI CIC. All rights reserved.</p>
 </footer>
 
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Fade-up on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
